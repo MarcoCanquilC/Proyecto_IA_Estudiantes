@@ -1,2 +1,2 @@
-# NaturaCoraline_DJ
-Proyecto WEB Django APP de NaturaCoraline
+# PROTECTO IA ESTUDIANTES
+Proyecto WEB Django APP 
