@@ -16,15 +16,34 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.contrib import admin
+from django.urls import path, include
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 
-from core import views  
+
+from core import views as core_views
+from user import views as user_views
+
+schema_view = get_schema_view(
+   openapi.Info(
+      title="API de IA Estudiantes",
+      default_version='v1',
+      description="Documentación de la API para el asistente educativo virtual",
+      terms_of_service="https://www.tusitio.com/terminos/",
+      contact=openapi.Contact(email="soporte@tusitio.com"),
+      license=openapi.License(name="MIT License"),
+   ),
+   public=True,
+   permission_classes=[permissions.AllowAny],
+)
 
 urlpatterns = [
-     path("", views.vistaIAEstudiantes, name="inicio"),  # Esto va a tu HTML personalizado
-
-
-    path('admin/', admin.site.urls),
-    
+    path("admin/", admin.site.urls),
+    path("api/users/", include("user.urls")),
+    path("docs/", schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path("redoc/", schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]
 
 
