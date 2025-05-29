@@ -7,9 +7,9 @@ venv/
 #media/
 
 #Ignorar archivos de caché de Python
-#__pycache__/
-#*.pyc
-#*.pyo
+__pycache__/
+*.pyc
+*.pyo
 
 # Ignorar base de datos SQLite (opcional si usas SQLite en local)
 #db.sqlite3
