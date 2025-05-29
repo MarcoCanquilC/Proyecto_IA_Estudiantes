@@ -17,7 +17,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user',  # Tu aplicación de usuarios
     'core',  # Tu aplicación principal
+    'rest_framework',       # Asegúrate de tener DRF
+    'drf_yasg',             # Agrega esta línea
 ]
 
 # Middleware
