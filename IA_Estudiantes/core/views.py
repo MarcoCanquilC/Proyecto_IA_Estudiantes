@@ -8,3 +8,6 @@ def vistaIAEstudiantes(request):
 
 def registroProfesores(request):
     return render (request, "registroProfesores.html")
+
+def herramientas(request):
+    return render(request, "Herramientas.html")

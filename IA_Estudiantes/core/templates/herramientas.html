@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+<div class="container mt-4">
+  <h2 class="mb-3">Chat de Demostración</h2>
+
+  
+  <!-- CHAT -->
+  
+  <div class="border rounded p-3"
+       style="height: 400px; overflow-y: auto; background-color: #f8f9fa;">
+    
+    <!-- MENSAJE IA -->
+    <div class="d-flex mb-2">
+      <div class="bg-light p-2 rounded"
+           style="max-width: 70%; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        <small class="text-muted">IA:</small>
+        <span>¡Hola! ¿En qué puedo ayudarte hoy?</span>
+      </div>
+    </div>
+
+    <!-- > MENSAJE DEL ESTUDIANTE -->
+    <div class="d-flex justify-content-end mb-2">
+      <div class="bg-primary text-white p-2 rounded"
+           style="max-width: 70%; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        <small class="text-light">Estudiante:</small>
+        <span>Quisiera saber los temas favoritos que tengo, por favor.</span>
+      </div>
+    </div>
+
+    <!-- OTRO MENSAJE DE LA IA -->
+    <div class="d-flex mb-2">
+      <div class="bg-light p-2 rounded"
+           style="max-width: 70%; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        <small class="text-muted">Tutor:</small>
+        <span>Tienes solo un tema favorito, Integrales Definidas en Matematicas de Ingenieria. ¿Quieres comenzar a estudiar este contenido? .</span>
+      </div>
+    </div>
+
+    <!-- MENSAJE ESTUDIANTE -->
+    <div class="d-flex justify-content-end mb-2">
+      <div class="bg-primary text-white p-2 rounded"
+           style="max-width: 70%; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+        <small class="text-light">Estudiante:</small>
+        <span>¡Si comenzemos!</span>
+      </div>
+    </div>
+
+  </div> <!-- /#messages -->
+
+  <!-- AREA DE TEXTO -->
+  <div class="input-group mt-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Escribe tu mensaje..."
+      aria-label="Mensaje"
+      disabled
+    />
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button" disabled>
+        Enviar
+      </button>
+    </div>
+  </div>
+</div>
+{% endblock %}
