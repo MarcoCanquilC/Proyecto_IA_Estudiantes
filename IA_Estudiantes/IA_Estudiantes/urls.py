@@ -47,7 +47,8 @@ urlpatterns = [
     path("redoc/", schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path("smart/", core_views.vistaIAEstudiantes, name="vistaIA"),
     path("registroProfesores/", core_views.registroProfesores, name="vistaRegistroProfesores    "),
-    path("herramientas/", core_views.herramientas, name="vistaHerramientas" )
+    path("herramientas/", core_views.herramientas, name="vistaHerramientas" ),
+    path("", core_views.vistaIAEstudiantes, name="vistaIA"),
 ]
 
 
