@@ -11,8 +11,7 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Ignorar base de datos SQLite (opcional si usas SQLite en local)
-#db.sqlite3
+# Ignorar base de datos SQLite (opcional si usas SQLite en localdb.sqlite3
 
 # Ignorar configuraciones de IDE
 #.vscode/
