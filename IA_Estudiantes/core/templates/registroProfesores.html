@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+
+<!-- Esto es para el usuario administrador del profesor -->
+    <div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-8 col-md-6 col-lg-5 p-4 shadow" id="contenido">
+            <h2 class="fw-bold text-center py-3">Registro de profesores</h2>
+            <hr>
+            <form method="post" action="">
+                {% csrf_token %}
+                <!-- Nombre completo -->
+                <div class="mb-3">
+                    <label for="nombreCompleto" class="form-label">Nombre completo</label>
+                    <input type="text" class="form-control" id="nombreCompleto" name="nombreCompleto" placeholder="Ej: Homero J. Simpson" required>
+                </div>
+                <!-- Correo institucional -->
+                <div class="mb-3">
+                    <label for="correoInstitucional" class="form-label">Correo institucional</label>
+                    <input type="email" class="form-control" id="correoInstitucional" name="correoInstitucional" placeholder="Ej: homero.simpson@universidad.cl" pattern=".+@universidad\.cl" required>
+                    <div class="form-text">Debe ingresar un correo institucional válido (ejemplo: usuario@universidad.cl)</div>
+                </div>
+                <!-- RUT -->
+                <div class="mb-3">
+                    <label for="rut" class="form-label">RUT</label>
+                    <input type="text" class="form-control" id="rut" name="rut" placeholder="Ej: 12.345.678-9" required>
+                </div>
+                <!-- Departamento académico -->
+                <div class="mb-3">
+                    <label for="departamento" class="form-label">Departamento académico</label>
+                    <input type="text" class="form-control" id="departamento" name="departamento" placeholder="Ej: Matemática" required>
+                </div>
+                <hr>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary" id="Boton">Registrar docente</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
