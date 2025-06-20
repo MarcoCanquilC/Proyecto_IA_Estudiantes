@@ -14,3 +14,6 @@ def herramientas(request):
 
 def temas(request):
     return render(request, "temas.html")
+
+def cuestionario(request):
+    return render(request, "cuestionario.html")
