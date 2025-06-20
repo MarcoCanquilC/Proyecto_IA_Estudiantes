@@ -11,3 +11,6 @@ def registroProfesores(request):
 
 def herramientas(request):
     return render(request, "Herramientas.html")
+
+def temas(request):
+    return render(request, "temas.html")
