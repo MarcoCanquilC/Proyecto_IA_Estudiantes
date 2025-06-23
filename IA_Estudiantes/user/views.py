@@ -1,3 +1,4 @@
+import json
 from rest_framework import viewsets
 from django.contrib.auth.models import User
 from .serializers import UserSerializer
@@ -36,13 +37,31 @@ class ProgresoSemanalViewSet(viewsets.ModelViewSet):
 
 def vista_progreso_usuario(request):
     try:
-        progreso = request.user.progress  # OneToOneField con related_name
+        progreso = request.user.progress
+        notas_objetivos = progreso.notasObjetivos or {}
+        notas_simulacros = progreso.notasSimulacros or {}
+        avance_objetivo = progreso.avanceObjetivo or {}
+
+        recomendaciones = []
+        for asignatura, objetivo in notas_objetivos.items():
+            nota = notas_simulacros.get(asignatura)
+            if nota is not None and objetivo > nota:
+                diferencia = objetivo - nota
+                recomendaciones.append({
+                    "asignatura": asignatura,
+                    "diferencia": round(diferencia, 1)
+                })
+
+        return render(request, "rendimiento.html", {
+            "progreso": progreso,
+            "json_notas_objetivos": json.dumps(notas_objetivos),
+            "json_notas_simulacros": json.dumps(notas_simulacros),
+            "json_avance_objetivo": json.dumps(avance_objetivo),
+            "recomendaciones": recomendaciones
+        })
     except ProgresoSemanal.DoesNotExist:
-        progreso = None
-
-    return render(request, "rendimiento.html", {"progreso": progreso})
-
-
+        return render(request, "rendimiento.html", {"progreso": None})
+        
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def mi_progreso(request):
