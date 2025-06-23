@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block titulo %}Mi Progreso{% endblock %}
+
+{% block contenido %}
+<div class="container py-5">
+    <h2 class="mb-4">📊 Progreso de {{ request.user.username }}</h2>
+
+    {% if progreso %}
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <p><strong>Horas Semanales:</strong> {{ progreso.horasSemanales }}</p>
+                <p><strong>Tópicos Cubiertos:</strong> {{ progreso.topicosCubiertos }} / {{ progreso.totalTopicos }}</p>
+                <p><strong>Porcentaje de Tópicos:</strong> {{ progreso.topicsProgressPercentage }}%</p>
+                <p><strong>Sesiones Estudio:</strong> {{ progreso.sesionesEstudio }}</p>
+                <p><strong>Promedio por Sesión:</strong> {{ progreso.tiempoPromedioPorSesion }} min</p>
+                <p><strong>Puntuación Autodiagnóstico:</strong> {{ progreso.puntuacionAutodiagnostico }}</p>
+                <p><strong>Errores Comunes:</strong> {{ progreso.erroresComunes }}</p>
+
+                <hr>
+                <h5>🎯 Avance por Asignatura</h5>
+                <ul class="list-group mb-3">
+                    {% for asignatura, avance in progreso.avanceObjetivo.items %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            {{ asignatura|title }}
+                            <span class="badge bg-success rounded-pill">{{ avance|floatformat:2 }}</span>
+                        </li>
+                    {% empty %}
+                        <li class="list-group-item">No hay datos aún.</li>
+                    {% endfor %}
+                </ul>
+
+                <h3 class="mt-5">📊 Comparación por asignatura</h3>
+                <div class="d-flex justify-content-center">
+                    <canvas id="graficoComparacion" style="max-width: 1200px; height: 100px;"></canvas>
+                </div>
+
+                {% if recomendaciones %}
+                    <hr>
+                    <h4 class="mt-4">📌 Recomendaciones personalizadas</h4>
+                    <ul class="list-group mb-4">
+                        {% for rec in recomendaciones %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Estás a <strong>{{ rec.diferencia }}</strong> puntos de tu meta en <strong>{{ rec.asignatura|title }}</strong> 🎯
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <p>No se ha registrado progreso aún.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const notasObjetivos = JSON.parse('{{ json_notas_objetivos|safe }}');
+    const notasSimulacros = JSON.parse('{{ json_notas_simulacros|safe }}');
+    const avanceObjetivo = JSON.parse('{{ json_avance_objetivo|safe }}');
+
+    const labels = Object.keys(notasObjetivos);
+    const objetivos = Object.values(notasObjetivos);
+    const simulacros = Object.values(notasSimulacros);
+    const avances = Object.values(avanceObjetivo).map(x => Math.round(x * 100));
+
+    const ctx = document.getElementById('graficoComparacion').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [
+                { label: 'Nota Objetivo', data: objetivos, backgroundColor: 'rgba(54, 162, 235, 0.5)' },
+                { label: 'Nota Simulacro', data: simulacros, backgroundColor: 'rgba(255, 99, 132, 0.5)' },
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Notas y Avance por Asignatura'
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    suggestedMax: 400
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}
