@@ -3,6 +3,7 @@
 
 # Ignorar la carpeta virtualenv
 venv/
+sqlite3.db
 
 #media/
 
