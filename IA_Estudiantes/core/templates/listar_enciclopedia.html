@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}Listar Enciclopedia{% endblock %}
+
+{% block contenido %}
+
+<h2 class="text-center my-4">📁 Archivos Subidos</h2>
+
+<div class="row justify-content-center">
+  {% for item in enciclopedias %}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+      <div class="card h-100 shadow-sm">
+        {% if item.imagen %}
+          <img src="{{ item.imagen.url }}" class="card-img-top" alt="Imagen de {{ item.nombre }}">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ item.nombre }}</h5>
+          {% if item.descripcion %}
+            <p class="card-text">{{ item.descripcion|truncatewords:20 }}</p>
+          {% endif %}
+        </div>
+        <div class="card-footer text-end">
+          {% if item.archivo %}
+            <a href="{{ item.archivo.url }}" download class="btn btn-sm btn-outline-primary">
+              <i class="bi bi-download"></i> Descargar
+            </a>
+          {% else %}
+            <span class="text-muted small">Sin archivo</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
