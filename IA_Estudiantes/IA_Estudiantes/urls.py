@@ -51,13 +51,8 @@ urlpatterns = [
      path("rendimiento/", user_views.vista_progreso_usuario, name="rendimiento_usuario"),
     path("cuestionario/", core_views.cuestionario, name="vistacuestionario" ),
     path("usuario/", include("user.urls")),
-<<<<<<< HEAD
-
-=======
     path("enciclopedia/", include("Enciclopedia.urls")),
-    path("favorito/<int:tema_id>/", core_views.toggle_favorito, name="toggle_favorito"),
->>>>>>> 52c0bfb206391650876d160ab981599c87216b1c
-
+  
 ]
 
 
