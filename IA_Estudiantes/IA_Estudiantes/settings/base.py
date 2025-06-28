@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',  # Tu aplicación de usuarios
     'core',  # Tu aplicación principal
+    'Enciclopedia', # Tu aplicación de enciclopedia
     'rest_framework',       # Asegúrate de tener DRF
     'drf_yasg',             # Agrega esta línea
 ]

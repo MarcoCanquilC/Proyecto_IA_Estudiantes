@@ -2,3 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 
+#formulario-subida{
+
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(173, 213, 120);
+}
+
+#titulo{
+
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    text-align: center;
+    font-size: 2em;
+    margin-top: 20px;
+}
+
