@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block titulo %}Subir Enciclopedia{% endblock %}
+
+{% block contenido %}
+<h2 class="row mb-4 justify-content-center" id="titulo">📚 Subir nuevo archivo</h2>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+      {% csrf_token %}
+      <div class="container">
+        <div class="row">
+            <div class="col-xl-4">
+
+            </div>
+            <div class="col xl-4 justify-content-md-center pt-4 p-4 rounded" id="formulario-subida">
+                {% for field in form %}
+                    <div class="row lg-2 justify-content-center">
+                    <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <div class="form-text">{{ field.help_text }}</div>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <div class="text-danger small">{{ error }}</div>
+                    {% endfor %}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <div class="col-xl-4">
+
+            </div>
+
+        </div>
+
+      </div>
+      
+      
+
+      <button type="submit" class="btn btn-primary">Subir</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

@@ -3,6 +3,7 @@
 
 # Ignorar la carpeta virtualenv
 venv/
+sqlite3.db
 
 #media/
 
@@ -16,3 +17,4 @@ __pycache__/
 # Ignorar configuraciones de IDE
 #.vscode/
 #.idea/
+IA_Estudiantes/IA_Estudiantes/db.sqlite3

@@ -24,6 +24,7 @@ from drf_yasg import openapi
 
 from core import views as core_views
 from user import views as user_views
+from Enciclopedia import views as enciclopedia_views
 
 schema_view = get_schema_view(
    openapi.Info(
@@ -50,6 +51,7 @@ urlpatterns = [
      path("rendimiento/", user_views.vista_progreso_usuario, name="rendimiento_usuario"),
     path("cuestionario/", core_views.cuestionario, name="vistacuestionario" ),
     path("usuario/", include("user.urls")),
+    path("enciclopedia/", include("Enciclopedia.urls")),
     path("favorito/<int:tema_id>/", core_views.toggle_favorito, name="toggle_favorito"),
 
 ]
