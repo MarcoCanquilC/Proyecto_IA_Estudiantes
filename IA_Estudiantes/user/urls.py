@@ -5,6 +5,7 @@ from .views import UserViewSet
 from .views import ProgresoSemanalViewSet
 from .views import mi_progreso
 from .views import vista_progreso_usuario
+from .views import toggle_favorito
 
 router = DefaultRouter()
 router.register(r"users", UserViewSet)
@@ -13,4 +14,5 @@ router.register(r"progreso", ProgresoSemanalViewSet, basename="progreso")
 urlpatterns = [
     path("progreso/mio/", mi_progreso, name="mi_progreso"),
     path("", include(router.urls)),
+    path("favorito/<int:tema_id>/", toggle_favorito, name="toggle_favorito"),
 ]

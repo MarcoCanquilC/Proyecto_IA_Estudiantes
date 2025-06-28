@@ -50,7 +50,7 @@ urlpatterns = [
      path("rendimiento/", user_views.vista_progreso_usuario, name="rendimiento_usuario"),
     path("cuestionario/", core_views.cuestionario, name="vistacuestionario" ),
     path("usuario/", include("user.urls")),
-    path("favorito/<int:tema_id>/", core_views.toggle_favorito, name="toggle_favorito"),
+
 
 ]
 
