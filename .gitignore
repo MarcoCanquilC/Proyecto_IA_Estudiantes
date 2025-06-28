@@ -17,3 +17,4 @@ __pycache__/
 # Ignorar configuraciones de IDE
 #.vscode/
 #.idea/
+IA_Estudiantes/IA_Estudiantes/db.sqlite3
