@@ -52,6 +52,7 @@ urlpatterns = [
     path("cuestionario/", core_views.cuestionario, name="vistacuestionario" ),
     path("usuario/", include("user.urls")),
     path("enciclopedia/", include("Enciclopedia.urls")),
+    path("favorito/<int:tema_id>/", core_views.toggle_favorito, name="toggle_favorito"),
 
 ]
 
