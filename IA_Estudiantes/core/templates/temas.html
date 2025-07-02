@@ -59,11 +59,8 @@
                 <h5 class="card-title">Lenguaje y Comunicación</h5>
                 <p class="card-text"><strong>Nivel:</strong> Básico/Intermedio/Avanzado</p>
                 <div class="d-flex align-items-center justify-content-between mt-auto">
-                {% if request.user.favorito_set.filter(tema=tema).exists %}
-                  <a href="{% url 'toggle_favorito' tema.id %}" class="btn btn-warning">Quitar de favoritos</a>
-                {% else %}
-                  <a href="{% url 'toggle_favorito' tema.id %}" class="btn btn-outline-warning">Favoritos</a>
-                {% endif %}                    
+                    <a href="#" class="btn btn-primary me-2">Ver más</a>
+                    <button class="btn btn-outline-warning" >Favoritos</button>         
                 </div>
               </div>
             </div>
@@ -146,6 +143,19 @@
       <div class="col-lg-3">
         <div class="favorites-list bg-white border rounded p-3 shadow-sm">
           <h4 class="mb-3">⭐ Temas Favoritos</h4>
+           <!-- 🔍 Barra de búsqueda -->
+          <input type="text" class="form-control mb-3" id="filtroFavoritos" placeholder="Filtrar temas...">
+
+          <!-- Lista utilizada como prueba para el boton de filtrar, borrar cuando este listo la lista de la base de datos -->
+          <ul class="list-group" id="listaFavoritos">
+            <li class="list-group-item">Lenguaje y Comunicación</li>
+            <li class="list-group-item">Matemáticas</li>
+            <li class="list-group-item">Historia y Ciencias Sociales</li>
+            <li class="list-group-item">Biología</li>
+            <li class="list-group-item">Química</li>
+            <li class="list-group-item">Física</li>
+          </ul>
+
           <ul class="list-group">
             <!-- Aqui tienen que agregar y eliminar los temas favoritos -->
              {% for fav in favoritos %}
@@ -166,5 +176,21 @@
 
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Script para la logica de la barra de filtro de temas -->
+  <script>
+    const filtro = document.getElementById("filtroFavoritos");
+    const lista = document.getElementById("listaFavoritos");
+
+    filtro.addEventListener("keyup", function () {
+      const texto = this.value.toLowerCase();
+      const items = lista.getElementsByTagName("li");
+
+      for (let item of items) {
+        const contenido = item.textContent.toLowerCase();
+        item.style.display = contenido.includes(texto) ? "" : "none";
+      }
+    });
+  </script>
 </body>
 {% endblock %}
