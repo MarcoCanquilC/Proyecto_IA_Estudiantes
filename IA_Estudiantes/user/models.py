@@ -88,3 +88,8 @@ class Pregunta(models.Model):
     def detectar_respuesta_incorrecta(self, seleccion):
         """Simula evaluación del quiz. Devuelve True si la respuesta es incorrecta."""
         return seleccion != self.respuestaCorrecta
+    
+
+class TemaFavorito:
+    def __init__(self, nombre):
+        self.nombre = nombre
