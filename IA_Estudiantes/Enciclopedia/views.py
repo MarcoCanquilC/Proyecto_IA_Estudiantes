@@ -67,7 +67,8 @@ def editar_enciclopedia(request, enciclopedia_id):
 
 @login_required
 def lista_enciclopedia(request):
-    enciclopedias = Enciclopedia.objects.all()
+    grupos_usuario = list(request.user.groups.values_list("name", flat=True))
+    enciclopedias = Enciclopedia.objects.filter(categoria__in=grupos_usuario)
     es_docente = request.user.groups.filter(name="docentes").exists()
     return render(request, "listar_enciclopedia.html", {
         "enciclopedias": enciclopedias,

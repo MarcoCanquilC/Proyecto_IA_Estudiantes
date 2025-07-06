@@ -4,4 +4,4 @@ from .models import Enciclopedia
 class EnciclopediaForm(forms.ModelForm):
     class Meta:
         model = Enciclopedia
-        fields = ["nombre", "descripcion", "imagen", "archivo"]
+        fields = ["nombre", "descripcion", "imagen", "archivo", "categoria"]
