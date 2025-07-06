@@ -2,21 +2,17 @@
 
 {% load static %}
 
-<!-- Título de la página -->
 {% block titulo %}
     {{ titulo }}
 {% endblock %}
 
-<!-- Contenido de la página -->
 {% block contenido %}
 
-<!-- Banner con Información -->
 <head>
   <meta charset="UTF-8">
   <h2 class="mb-4 text-center">Preguntas de Lenguaje y Comunicación</h2>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS + Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -31,6 +27,13 @@
     .respuesta-incorrecta {
       color: red;
     }
+    .ia-feedback {
+      font-style: italic;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f0f8ff;
+      border-left: 4px solid #007bff;
+    }
   </style>
 </head>
 <body>
@@ -40,7 +43,6 @@
     <h5>¿Cuál es la función principal de un conector causal en un texto?</h5>
 
     <form id="quizForm" onsubmit="verificarRespuesta(); return false;">
-      <!-- Alternativas -->
       <div class="form-check mt-3">
         <input class="form-check-input" type="radio" name="respuesta" id="opcionA" value="a">
         <label class="form-check-label" for="opcionA">
@@ -73,33 +75,33 @@
         </label>
       </div>
 
-      <!-- Botón enviar -->
       <button type="submit" class="btn btn-success">Enviar</button>
     </form>
 
-    <!-- Retroalimentación textual -->
+    <!-- Retroalimentación de la pregunta -->
     <div id="feedback" class="mt-3"></div>
+
+    <!-- Simulación de feedback de IA -->
+    <div id="iaFeedback" class="ia-feedback"></div>
   </div>
 </div>
 
-<!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- Script -->
 <script>
   const respuestaCorrecta = "c";
 
   function verificarRespuesta() {
-    // Limpiar íconos anteriores
     ["A", "B", "C", "D"].forEach(letra => {
       const icon = document.getElementById("icon" + letra);
       icon.className = "bi option-icon";
       icon.classList.remove("respuesta-correcta", "respuesta-incorrecta");
     });
 
-    // Obtener div de retroalimentación
     const feedbackDiv = document.getElementById("feedback");
-    feedbackDiv.innerHTML = ""; // limpiar antes
+    const iaFeedbackDiv = document.getElementById("iaFeedback");
+    feedbackDiv.innerHTML = "";
+    iaFeedbackDiv.innerHTML = "";
 
     const seleccion = document.querySelector('input[name="respuesta"]:checked');
 
@@ -111,9 +113,11 @@
       if (valor === respuestaCorrecta) {
         icono.classList.add("bi-check-circle-fill", "respuesta-correcta");
         feedbackDiv.textContent = "✅ ¡Correcto! Esa es la función de un conector causal.";
+        iaFeedbackDiv.textContent = "🤖 IA: ¡Buen trabajo! Veo que comprendes bien el uso de conectores causales. Sigue practicando con otros tipos de conectores.";
       } else {
         icono.classList.add("bi-x-circle-fill", "respuesta-incorrecta");
         feedbackDiv.textContent = "❌ Incorrecto. Un conector causal indica relación de causa entre ideas. La respuesta correcta era la opción C.";
+        iaFeedbackDiv.textContent = "🤖 IA: Te recomiendo repasar el contenido de *cohesión y coherencia textual*. Especialmente los conectores causales como 'porque', 'ya que', 'por tanto'.";
       }
     } else {
       alert("Por favor selecciona una opción antes de enviar.");
