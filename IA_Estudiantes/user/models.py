@@ -68,3 +68,23 @@ class favorito(models.Model):
 
     def __str__(self):
         return f"{self.usuario.username} ♥ {self.tema.nombre}"
+
+class Pregunta(models.Model):
+    enunciado = models.TextField()
+    opcionA = models.CharField(max_length=255)
+    opcionB = models.CharField(max_length=255)
+    opcionC = models.CharField(max_length=255)
+    opcionD = models.CharField(max_length=255)
+    respuestaCorrecta = models.CharField(
+        max_length=1,
+        choices=[("a", "A"), ("b", "B"), ("c", "C"), ("d", "D")]
+    )
+    retroPregunta = models.TextField(help_text="Explicación específica de la respuesta correcta.")
+    retroIA = models.TextField(help_text="Retroalimentación sugerida por IA para respuestas incorrectas.")
+
+    def __str__(self):
+        return f"{self.enunciado[:50]}..."
+
+    def detectar_respuesta_incorrecta(self, seleccion):
+        """Simula evaluación del quiz. Devuelve True si la respuesta es incorrecta."""
+        return seleccion != self.respuestaCorrecta
