@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block titulo %}Editar Contenido{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5" style="max-width: 600px;">
+  <h2 class="mb-4">✏️ Editar Contenido de Enciclopedia</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <div class="mt-3 d-flex justify-content-between">
+      <a href="{% url 'lista_enciclopedia' %}" class="btn btn-secondary">Cancelar</a>
+      <button type="submit" class="btn btn-success">Guardar cambios</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

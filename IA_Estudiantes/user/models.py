@@ -46,8 +46,6 @@ class ProgresoSemanal(models.Model):
         self.porcentajeObjetivosCumplidos = calcular_porcentaje_temas(self.topicosCubiertos, self.totalTopicos)
         super().save(*args, **kwargs)
 
-
-
 class tema(models.Model):
     nombre = models.CharField(max_length=200)
     nivel = models.CharField(max_length=50, choices=[

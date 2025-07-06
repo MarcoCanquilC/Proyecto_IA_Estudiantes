@@ -12,7 +12,7 @@ router.register(r"users", UserViewSet)
 router.register(r"progreso", ProgresoSemanalViewSet, basename="progreso")
 
 urlpatterns = [
-    path("progreso/mio/", mi_progreso, name="mi_progreso"),
     path("", include(router.urls)),
+    path("progreso/mio/", mi_progreso, name="mi_progreso"),
     path("favorito/<int:tema_id>/", toggle_favorito, name="toggle_favorito"),
 ]
