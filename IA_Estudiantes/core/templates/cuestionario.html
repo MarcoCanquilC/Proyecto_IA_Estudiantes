@@ -76,6 +76,9 @@
       <!-- Botón enviar -->
       <button type="submit" class="btn btn-success">Enviar</button>
     </form>
+
+    <!-- Retroalimentación textual -->
+    <div id="feedback" class="mt-3"></div>
   </div>
 </div>
 
@@ -84,7 +87,7 @@
 
 <!-- Script -->
 <script>
-  const respuestaCorrecta = "a";
+  const respuestaCorrecta = "c";
 
   function verificarRespuesta() {
     // Limpiar íconos anteriores
@@ -94,7 +97,10 @@
       icon.classList.remove("respuesta-correcta", "respuesta-incorrecta");
     });
 
-    // Obtener la opción seleccionada
+    // Obtener div de retroalimentación
+    const feedbackDiv = document.getElementById("feedback");
+    feedbackDiv.innerHTML = ""; // limpiar antes
+
     const seleccion = document.querySelector('input[name="respuesta"]:checked');
 
     if (seleccion) {
@@ -104,8 +110,10 @@
 
       if (valor === respuestaCorrecta) {
         icono.classList.add("bi-check-circle-fill", "respuesta-correcta");
+        feedbackDiv.textContent = "✅ ¡Correcto! Esa es la función de un conector causal.";
       } else {
         icono.classList.add("bi-x-circle-fill", "respuesta-incorrecta");
+        feedbackDiv.textContent = "❌ Incorrecto. Un conector causal indica relación de causa entre ideas. La respuesta correcta era la opción C.";
       }
     } else {
       alert("Por favor selecciona una opción antes de enviar.");
@@ -113,6 +121,5 @@
   }
 </script>
 </body>
-
 
 {% endblock %}
